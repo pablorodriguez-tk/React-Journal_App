@@ -4,6 +4,7 @@ import useForm from "../../hooks/useForm";
 import validator from "validator";
 import { useDispatch, useSelector } from "react-redux";
 import { removeError, setError } from "../../actions/ui";
+import { startRegisterWithEmailPasswordName } from "../../actions/auth";
 
 const RegisterScren = () => {
   const dispatch = useDispatch();
@@ -39,7 +40,7 @@ const RegisterScren = () => {
   const handleRegister = (e) => {
     e.preventDefault();
     if (isFormValid()) {
-      console.log("Formulario Correcto");
+      dispatch(startRegisterWithEmailPasswordName(email, password, name));
     }
   };
 

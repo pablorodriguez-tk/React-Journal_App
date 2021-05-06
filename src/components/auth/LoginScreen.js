@@ -9,7 +9,7 @@ const LoginScreen = () => {
 
   const initialForm = {
     email: "nando@gmail.com",
-    password: 123456,
+    password: "123456",
   };
 
   const [formValues, handleInputChange] = useForm(initialForm);
@@ -18,6 +18,7 @@ const LoginScreen = () => {
 
   const handleLogin = (e) => {
     e.preventDefault();
+    console.log(email, password);
     dispatch(startLoginEmailPassword(email, password));
   };
 
