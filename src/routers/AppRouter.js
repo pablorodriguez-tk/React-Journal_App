@@ -7,8 +7,7 @@ import { useDispatch } from "react-redux";
 import { login } from "../actions/auth";
 import PublicRoute from "./PublicRoute";
 import PrivateRoute from "./Private.Route";
-import { loadNotes } from "../helpers/loadNotes";
-import { setNotes } from "../actions/notes";
+import { startLoadingNotes } from "../actions/notes";
 
 const AppRouter = () => {
   const dispatch = useDispatch();
@@ -17,12 +16,11 @@ const AppRouter = () => {
 
   useEffect(() => {
     //Mantiene el estado de la autenticacion al recargar la pagina
-    firebase.auth().onAuthStateChanged(async (user) => {
+    firebase.auth().onAuthStateChanged((user) => {
       if (user?.uid) {
         dispatch(login(user.uid, user.displayName));
         setIsLoggedIn(true);
-        const notes = await loadNotes(user.uid);
-        dispatch(setNotes(notes));
+        dispatch(startLoadingNotes(user.uid));
       } else {
         setIsLoggedIn(false);
       }
