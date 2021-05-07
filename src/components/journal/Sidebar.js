@@ -7,6 +7,7 @@ import JournalEntries from "./JournalEntries";
 const Sidebar = () => {
   const { name } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
+
   const handleLogout = () => {
     dispatch(startLogout());
   };
