@@ -41,7 +41,6 @@ describe("Pruebas en <RegisterScreen/>", () => {
     emailField.simulate("change", { target: { value: "", name: "email" } });
     wrapper.find("form").simulate("submit", { preventDefault() {} });
     const actions = store.getActions();
-    console.log(actions);
     expect(actions[0]).toEqual({
       type: types.uiSetError,
       payload: "Email is not valid",
@@ -69,6 +68,10 @@ describe("Pruebas en <RegisterScreen/>", () => {
           <RegisterScreen />
         </Provider>
       </MemoryRouter>
+    );
+    expect(wrapper.find(".auth__alert-error").exists()).toBe(true);
+    expect(wrapper.find(".auth__alert-error").text().trim()).toBe(
+      initState.ui.msgError
     );
   });
 });
